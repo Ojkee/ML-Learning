@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ML/DL Roadmap — Ojke</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface-alt: #f1efe8;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.14);
+    --text: #1a1a18;
+    --text-secondary: #5f5e5a;
+    --text-muted: #9b9990;
+    --accent-blue: #185FA5;
+    --accent-blue-bg: #E6F1FB;
+    --accent-blue-mid: #378ADD;
+    --accent-teal: #0F6E56;
+    --accent-teal-bg: #E1F5EE;
+    --accent-teal-mid: #1D9E75;
+    --accent-purple: #534AB7;
+    --accent-purple-bg: #EEEDFE;
+    --accent-purple-mid: #7F77DD;
+    --accent-coral: #993C1D;
+    --accent-coral-bg: #FAECE7;
+    --accent-coral-mid: #D85A30;
+    --accent-amber: #854F0B;
+    --accent-amber-bg: #FAEEDA;
+    --accent-amber-mid: #BA7517;
+    --accent-pink: #993556;
+    --accent-pink-bg: #FBEAF0;
+    --accent-pink-mid: #D4537E;
+    --spine: #d3d1c7;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #18181a;
+      --surface: #1e1e21;
+      --surface-alt: #242428;
+      --border: rgba(255,255,255,0.07);
+      --border-strong: rgba(255,255,255,0.12);
+      --text: #e8e6df;
+      --text-secondary: #9b9990;
+      --text-muted: #5f5e5a;
+      --accent-blue: #85B7EB;
+      --accent-blue-bg: #042C53;
+      --accent-blue-mid: #378ADD;
+      --accent-teal: #5DCAA5;
+      --accent-teal-bg: #04342C;
+      --accent-teal-mid: #1D9E75;
+      --accent-purple: #AFA9EC;
+      --accent-purple-bg: #26215C;
+      --accent-purple-mid: #7F77DD;
+      --accent-coral: #F0997B;
+      --accent-coral-bg: #4A1B0C;
+      --accent-coral-mid: #D85A30;
+      --accent-amber: #EF9F27;
+      --accent-amber-bg: #412402;
+      --accent-amber-mid: #BA7517;
+      --accent-pink: #ED93B1;
+      --accent-pink-bg: #4B1528;
+      --accent-pink-mid: #D4537E;
+      --spine: #3a3a3c;
+    }
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  .page-header {
+    background: var(--surface);
+    border-bottom: 0.5px solid var(--border-strong);
+    padding: 32px 40px 28px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .page-header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .page-header p {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .leg {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .leg-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .content {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* Timeline spine */
+  .timeline {
+    position: relative;
+    padding-left: 52px;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--spine);
+  }
+
+  /* Phase block */
+  .phase {
+    position: relative;
+    margin-bottom: 0;
+  }
+
+  /* Arrow connector between phases */
+  .phase-arrow {
+    position: relative;
+    margin-left: -35px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .phase-arrow::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--spine);
+    z-index: 0;
+  }
+
+  .arrow-body {
+    position: relative;
+    z-index: 1;
+    margin-left: 52px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .arrow-line {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .arrow-line svg {
+    display: block;
+  }
+
+  /* Phase node on spine */
+  .phase-node {
+    position: absolute;
+    left: -35px;
+    top: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 2;
+    border: 3px solid var(--bg);
+  }
+
+  /* Phase card */
+  .phase-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border-strong);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .phase-header {
+    padding: 18px 22px 14px;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .phase-num {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  .phase-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    flex: 1;
+  }
+
+  .phase-duration {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 0.5px solid var(--border-strong);
+    color: var(--text-secondary);
+  }
+
+  .phase-desc {
+    padding: 12px 22px 16px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  /* Sections grid */
+  .sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .section {
+    padding: 16px 20px 18px;
+    border-right: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .section:nth-child(even) {
+    border-right: none;
+  }
+
+  .section:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .item-list {
+    list-style: none;
+  }
+
+  .item-list li {
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding: 3px 0 3px 14px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .item-list li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  .item-list li a {
+    color: var(--accent-blue-mid);
+    text-decoration: none;
+  }
+
+  .item-list li a:hover {
+    text-decoration: underline;
+  }
+
+  .item-list li strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  /* Section type colors */
+  .type-kurs .section-label    { background: var(--accent-blue-bg); color: var(--accent-blue); }
+  .type-paper .section-label   { background: var(--accent-purple-bg); color: var(--accent-purple); }
+  .type-build .section-label   { background: var(--accent-coral-bg); color: var(--accent-coral); }
+  .type-czytaj .section-label  { background: var(--accent-amber-bg); color: var(--accent-amber); }
+  .type-portfolio .section-label { background: var(--accent-teal-bg); color: var(--accent-teal); }
+  .type-zawsze .section-label  { background: var(--accent-pink-bg); color: var(--accent-pink); }
+
+  .tag-kurs      { background: var(--accent-blue-bg); color: var(--accent-blue); }
+  .tag-paper     { background: var(--accent-purple-bg); color: var(--accent-purple); }
+  .tag-build     { background: var(--accent-coral-bg); color: var(--accent-coral); }
+  .tag-czytaj    { background: var(--accent-amber-bg); color: var(--accent-amber); }
+  .tag-portfolio { background: var(--accent-teal-bg); color: var(--accent-teal); }
+
+  /* Phase node colors */
+  .node-1 { background: var(--accent-blue-bg); color: var(--accent-blue); }
+  .node-2 { background: var(--accent-teal-bg); color: var(--accent-teal); }
+  .node-3 { background: var(--accent-purple-bg); color: var(--accent-purple); }
+  .node-4 { background: var(--accent-coral-bg); color: var(--accent-coral); }
+  .node-5 { background: var(--accent-amber-bg); color: var(--accent-amber); }
+  .node-6 { background: var(--accent-pink-bg); color: var(--accent-pink); }
+
+  /* Phase header accent line */
+  .phase-card.p1 { border-top: 3px solid var(--accent-blue-mid); }
+  .phase-card.p2 { border-top: 3px solid var(--accent-teal-mid); }
+  .phase-card.p3 { border-top: 3px solid var(--accent-purple-mid); }
+  .phase-card.p4 { border-top: 3px solid var(--accent-coral-mid); }
+  .phase-card.p5 { border-top: 3px solid var(--accent-amber-mid); }
+  .phase-card.p6 { border-top: 3px solid var(--accent-pink-mid); }
+
+  /* Single-column section */
+  .section.full { grid-column: 1 / -1; border-right: none; }
+  .section.full:last-child { border-bottom: none; }
+
+  /* Phase 6 "zawsze" gets a distinct look */
+  .always-note {
+    padding: 14px 22px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-style: italic;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  /* TOC nav at top */
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 36px;
+  }
+
+  .toc a {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 0.5px solid var(--border-strong);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background 0.1s;
+  }
+
+  .toc a:hover {
+    background: var(--surface-alt);
+  }
+
+  @media (max-width: 600px) {
+    .content { padding: 24px 16px 60px; }
+    .timeline { padding-left: 44px; }
+    .sections { grid-template-columns: 1fr; }
+    .section { border-right: none; }
+    .section:nth-last-child(-n+2) { border-bottom: 0.5px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .page-header { padding: 20px 16px 16px; }
+  }
+
+.item-list input[type=checkbox]{margin-right:8px;transform:scale(1.1);cursor:pointer;vertical-align:middle;}
+.item-list li:has(input:checked){opacity:.6;text-decoration:line-through;}</style>
+</head>
+<body>
+<div class="page-header">
+<h1>ML/DL Career Roadmap</h1>
+<p>Sekwencyjna ścieżka nauki — wiesz zawsze co robić dalej</p>
+<div class="legend">
+<div class="leg"><div class="leg-dot" style="background:#378ADD"></div>Kurs</div>
+<div class="leg"><div class="leg-dot" style="background:#7F77DD"></div>Paper</div>
+<div class="leg"><div class="leg-dot" style="background:#D85A30"></div>Budujesz</div>
+<div class="leg"><div class="leg-dot" style="background:#BA7517"></div>Czytaj</div>
+<div class="leg"><div class="leg-dot" style="background:#1D9E75"></div>Portfolio</div>
+</div>
+</div>
+<div class="content">
+<nav class="toc">
+<a href="#p1">1 · DL od środka</a>
+<a href="#p2">2 · Transformer + CV + NEAT</a>
+<a href="#p3">3 · LLMs + RAG</a>
+<a href="#p4">4 · MLOps + SQL + Cloud</a>
+<a href="#p5">5 · AutoML + Magisterka + Interview</a>
+<a href="#p6">6 · Tło teoretyczne</a>
+</nav>
+<div class="timeline">
+<!-- ═══════════════════════════ FAZA 1 ═══════════════════════════ -->
+<div class="phase" id="p1">
+<div class="phase-node node-1">1</div>
+<div class="phase-card p1">
+<div class="phase-header">
+<span class="phase-num">Faza 1</span>
+<span class="phase-title">Deep Learning od środka</span>
+<span class="phase-duration">4–6 tygodni</span>
+</div>
+<div class="phase-desc">
+          Zaczynasz tutaj. Karpathy i fast.ai robisz <strong>równolegle</strong> — Karpathy daje rozumienie od zera (backprop ręcznie, własny autograd), fast.ai daje szeroki widok aplikacji. Równolegle czytasz kluczowe papiery z listy — masz do nich kontekst bo widzisz kod. Na koniec: budujesz własną sieć od zera i podpinasz ją pod swój projekt symulacji.
+        </div>
+<div class="sections">
+<div class="section type-kurs">
+<div class="section-label">🎬 Kurs · wideo</div>
+<div class="section-title">Karpathy: Neural Networks Zero to Hero</div>
+<ul class="item-list">
+<li><input data-id="item-0" type="checkbox"/><strong>Ep 1</strong> — micrograd: autograd engine od zera, DAG, reverse-mode autodiff</li>
+<li><input data-id="item-1" type="checkbox"/><strong>Ep 2</strong> — makemore part 1: bigram LM, torch.Tensor</li>
+<li><input data-id="item-2" type="checkbox"/><strong>Ep 3</strong> — makemore part 2: MLP, train/val/test split, underfitting</li>
+<li><input data-id="item-3" type="checkbox"/><strong>Ep 4</strong> — makemore part 3: BatchNorm, init, diagnostics narzędzia</li>
+<li><input data-id="item-4" type="checkbox"/><strong>Ep 5</strong> — backprop ręcznie przez MLP bez autograd</li>
+<li><input data-id="item-5" type="checkbox"/><strong>Ep 6</strong> — makemore part 5: WaveNet-style CNN hierarchicznie</li>
+<li><input data-id="item-6" type="checkbox"/><strong>Ep 7</strong> — nanoGPT: Transformer od zera, attention, residual</li>
+<li><input data-id="item-7" type="checkbox"/><strong>Ep 8</strong> — GPT Tokenizer: BPE od zera</li>
+<li><input data-id="item-8" type="checkbox"/><a href="https://karpathy.ai/zero-to-hero.html" target="_blank">karpathy.ai/zero-to-hero ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-kurs">kurs</span></div>
+</div>
+<div class="section type-kurs">
+<div class="section-label">📚 Kurs · interaktywny</div>
+<div class="section-title">fast.ai Part 1: Practical Deep Learning for Coders</div>
+<ul class="item-list">
+<li><input data-id="item-9" type="checkbox"/><strong>Lesson 1–2</strong>: ResNet image classifier, deploy w Kaggle/HF Spaces</li>
+<li><input data-id="item-10" type="checkbox"/><strong>Lesson 3–4</strong>: Data augmentation, Transfer learning, fine-tuning</li>
+<li><input data-id="item-11" type="checkbox"/><strong>Lesson 5</strong>: From-scratch NLP model z tabular data</li>
+<li><input data-id="item-12" type="checkbox"/><strong>Lesson 6</strong>: Random forests vs deep learning — kiedy co</li>
+<li><input data-id="item-13" type="checkbox"/><strong>Lesson 7</strong>: Collaborative filtering (embedding approach)</li>
+<li><input data-id="item-14" type="checkbox"/><strong>Lesson 8</strong>: Convolutions from scratch</li>
+<li><input data-id="item-15" type="checkbox"/><strong>Lesson 9</strong>: Training fundamentals — learning rate finder, 1cycle</li>
+<li><input data-id="item-16" type="checkbox"/><a href="https://course.fast.ai" target="_blank">course.fast.ai ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-kurs">kurs</span></div>
+</div>
+<div class="section type-paper">
+<div class="section-label">📄 Papiery z listy</div>
+<div class="section-title">Fundamenty — czytaj równolegle z kursami</div>
+<ul class="item-list">
+<li><input data-id="item-17" type="checkbox"/><strong>Attention Is All You Need</strong> — Vaswani et al. 2017 (pierwsze czytanie)</li>
+<li><input data-id="item-18" type="checkbox"/><strong>The Annotated Transformer</strong> — Harvard NLP, implementacja krok po kroku</li>
+<li><input data-id="item-19" type="checkbox"/><strong>The Unreasonable Effectiveness of RNNs</strong> — Karpathy blog (przed Ep 2)</li>
+<li><input data-id="item-20" type="checkbox"/><strong>Understanding LSTM Networks</strong> — Olah (Chris Olah blog)</li>
+<li><input data-id="item-21" type="checkbox"/><strong>Recurrent Neural Networks Regularization</strong> — Zaremba et al.</li>
+<li><input data-id="item-22" type="checkbox"/><strong>ImageNet Classification with Deep CNNs</strong> — Krizhevsky (AlexNet 2012)</li>
+<li><input data-id="item-23" type="checkbox"/><strong>Keeping NNs Simple</strong> — Graves 2013 (MDL + minimum description)</li>
+<li><input data-id="item-24" type="checkbox"/><a href="https://jalammar.github.io/illustrated-transformer/" target="_blank">The Illustrated Transformer — Jay Alammar ↗</a></li>
+<li><input data-id="item-25" type="checkbox"/><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank">Understanding LSTMs — Colah blog ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-paper">paper</span></div>
+</div>
+<div class="section type-build">
+<div class="section-label">🔨 Budujesz</div>
+<div class="section-title">Projekt: symulacje + własna sieć neuronowa</div>
+<ul class="item-list">
+<li><input data-id="item-26" type="checkbox"/>Double pendulum — Lagrangian ✓ (już zrobione)</li>
+<li><input data-id="item-27" type="checkbox"/>Własna sieć od zera w czystym NumPy (równolegle z Ep 1–3)</li>
+<li><input data-id="item-28" type="checkbox"/>Backprop ręcznie z gradientsami — zrozum każdy krok</li>
+<li><input data-id="item-29" type="checkbox"/>Interfejs config: wybór modelu, podpięcie symulacji</li>
+<li><input data-id="item-30" type="checkbox"/>Pierwsze pytanie: czy sieć może cokolwiek nauczyć się z fizyki?</li>
+<li><input data-id="item-31" type="checkbox"/>Wizualizacja loss curves, gradientów (diagnostics jak w Ep 4)</li>
+</ul>
+<div class="tags"><span class="tag tag-build">budujesz</span><span class="tag tag-portfolio">portfolio</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow 1→2 -->
+<div class="phase-arrow">
+<div class="arrow-body">
+<svg fill="none" height="20" viewbox="0 0 16 20" width="16">
+<path d="M8 2 L8 14 M4 10 L8 15 L12 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+        masz własny autograd i wiesz jak działa backprop — teraz idziesz wyżej
+      </div>
+</div>
+<!-- ═══════════════════════════ FAZA 2 ═══════════════════════════ -->
+<div class="phase" id="p2">
+<div class="phase-node node-2">2</div>
+<div class="phase-card p2">
+<div class="phase-header">
+<span class="phase-num">Faza 2</span>
+<span class="phase-title">Transformer głębiej + Computer Vision + NEAT</span>
+<span class="phase-duration">4–6 tygodni</span>
+</div>
+<div class="phase-desc">
+          fast.ai Part 2 implementuje Stable Diffusion od zera — to świetne ćwiczenie bo łączy CNN, U-Net, attention i VAE. Jednocześnie implementujesz własny NEAT. NEAT wymaga rozumienia sieci (masz je z Fazy 1) i algorytmów ewolucyjnych. Czytasz papiery CV z listy — ResNet, dilated convolutions, Relational Reasoning.
+        </div>
+<div class="sections">
+<div class="section type-kurs">
+<div class="section-label">🎬 Kurs · wideo</div>
+<div class="section-title">fast.ai Part 2: Foundations → Stable Diffusion</div>
+<ul class="item-list">
+<li><input data-id="item-32" type="checkbox"/><strong>Lesson 9</strong>: Deep learning foundations, matrix mult od zera</li>
+<li><input data-id="item-33" type="checkbox"/><strong>Lesson 10</strong>: Implementacja ResNet od zera w PyTorch</li>
+<li><input data-id="item-34" type="checkbox"/><strong>Lesson 11</strong>: Forward/backward pass głębiej, mixed precision</li>
+<li><input data-id="item-35" type="checkbox"/><strong>Lesson 12</strong>: DDPM — denoising diffusion probabilistic model</li>
+<li><input data-id="item-36" type="checkbox"/><strong>Lesson 13</strong>: Stable Diffusion: U-Net, noise schedule, CFG</li>
+<li><input data-id="item-37" type="checkbox"/><strong>Lesson 14</strong>: CLIP, text conditioning, latent diffusion</li>
+<li><input data-id="item-38" type="checkbox"/><strong>Lesson 15</strong>: VAE — latent space, reparametrization trick</li>
+<li><input data-id="item-39" type="checkbox"/><a href="https://course.fast.ai/Lessons/part2.html" target="_blank">course.fast.ai/part2 ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-kurs">kurs</span></div>
+</div>
+<div class="section type-build">
+<div class="section-label">🔨 Budujesz</div>
+<div class="section-title">NEAT — własna implementacja od zera</div>
+<ul class="item-list">
+<li><input data-id="item-40" type="checkbox"/><strong>Krok 1</strong>: Przeczytaj Stanley &amp; Miikkulainen 2002 (6 stron — zrób to naprawdę)</li>
+<li><input data-id="item-41" type="checkbox"/><strong>Krok 2</strong>: Genome encoding: lista node genes + connection genes</li>
+<li><input data-id="item-42" type="checkbox"/><strong>Krok 3</strong>: Innovation numbers — historical markers dla crossover</li>
+<li><input data-id="item-43" type="checkbox"/><strong>Krok 4</strong>: Speciation: compatibility distance δ = c1·E/N + c2·D/N + c3·W</li>
+<li><input data-id="item-44" type="checkbox"/><strong>Krok 5</strong>: Crossover topologicznie różnych genomów</li>
+<li><input data-id="item-45" type="checkbox"/><strong>Krok 6</strong>: Mutacje: add node, add connection, weight perturbation</li>
+<li><input data-id="item-46" type="checkbox"/><strong>Krok 7</strong>: Fitness evaluation w środowisku (symulacja fizyczna)</li>
+<li><input data-id="item-47" type="checkbox"/><strong>Krok 8</strong>: Porównaj z neat-python jako referencyjna implementacja</li>
+<li><input data-id="item-48" type="checkbox"/><a href="https://neat-python.readthedocs.io" target="_blank">neat-python docs (referencyjna impl) ↗</a></li>
+<li><input data-id="item-49" type="checkbox"/><a href="https://towardsdatascience.com/from-genes-to-neural-networks-understanding-and-building-neat-neuro-evolution-of-augmenting-topologies-from-scratch/" target="_blank">TDS: Building NEAT from scratch ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-build">budujesz</span><span class="tag tag-portfolio">portfolio</span></div>
+</div>
+<div class="section type-paper">
+<div class="section-label">📄 Papiery z listy</div>
+<div class="section-title">Computer Vision i głęboka architektura</div>
+<ul class="item-list">
+<li><input data-id="item-50" type="checkbox"/><strong>Deep Residual Learning</strong> — He et al. 2015 (ResNet) — czytaj razem z Lesson 10</li>
+<li><input data-id="item-51" type="checkbox"/><strong>Identity Mapping in Deep Residual Networks</strong> — He et al. 2016</li>
+<li><input data-id="item-52" type="checkbox"/><strong>Multi-Scale Context Aggregation by Dilated Convolutions</strong> — Yu &amp; Koltun</li>
+<li><input data-id="item-53" type="checkbox"/><strong>A Simple NN Module for Relational Reasoning</strong> — Santoro et al. 2017</li>
+<li><input data-id="item-54" type="checkbox"/><strong>GPipe: Easy Scaling with Micro-Batch Pipeline Parallelism</strong></li>
+<li><input data-id="item-55" type="checkbox"/><strong>CS231n lecture notes</strong> — CNN for Visual Recognition (Stanford)</li>
+</ul>
+<div class="tags"><span class="tag tag-paper">paper</span></div>
+</div>
+<div class="section type-czytaj">
+<div class="section-label">📖 Czytaj</div>
+<div class="section-title">Neuroevolution — tło do NEAT</div>
+<ul class="item-list">
+<li><input data-id="item-56" type="checkbox"/>NEAT overview — neat-python.readthedocs.io (zanim piszesz kod)</li>
+<li><input data-id="item-57" type="checkbox"/>HyperNEAT: geometry-aware evolution — Stanley et al.</li>
+<li><input data-id="item-58" type="checkbox"/>Tensorized NEAT for GPU — arxiv 2404.01817</li>
+<li><input data-id="item-59" type="checkbox"/>Neuroevolution on the Edge of Chaos — arxiv 1706.01330</li>
+<li><input data-id="item-60" type="checkbox"/>NEAT + RL vs Q-Learning — arxiv 2209.09007 (porównanie do Q-learning)</li>
+</ul>
+<div class="tags"><span class="tag tag-czytaj">czytaj</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow 2→3 -->
+<div class="phase-arrow">
+<div class="arrow-body">
+<svg fill="none" height="20" viewbox="0 0 16 20" width="16">
+<path d="M8 2 L8 14 M4 10 L8 15 L12 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+        rozumiesz architekturę Transformera i VAE — wchodzisz w LLMs z solidną bazą
+      </div>
+</div>
+<!-- ═══════════════════════════ FAZA 3 ═══════════════════════════ -->
+<div class="phase" id="p3">
+<div class="phase-node node-3">3</div>
+<div class="phase-card p3">
+<div class="phase-header">
+<span class="phase-num">Faza 3</span>
+<span class="phase-title">LLMs głębiej + RAG Inspector</span>
+<span class="phase-duration">6–8 tygodni</span>
+</div>
+<div class="phase-desc">
+          Teraz masz kontekst żeby rozumieć LLMy naprawdę — nie jako black box. mlabonne/llm-course przeprowadza przez całą ścieżkę od tokenizacji przez fine-tuning (LoRA działa na Twoim GTX 1080 z 8 GB VRAM!) po RAG i agenty. HuggingFace NLP Course daje praktyczne hands-on. RAG Inspector finalnie staje się kompletnym projektem portfolio.
+        </div>
+<div class="sections">
+<div class="section type-kurs">
+<div class="section-label">🎬 Kurs</div>
+<div class="section-title">mlabonne/llm-course — LLM Scientist + Engineer track</div>
+<ul class="item-list">
+<li><input data-id="item-61" type="checkbox"/><strong>LLM Fundamentals</strong>: math recap, Python ML ecosystem</li>
+<li><input data-id="item-62" type="checkbox"/><strong>Architektura</strong>: decoder-only GPT, attention mechanisms, positional encoding</li>
+<li><input data-id="item-63" type="checkbox"/><strong>Tokenizacja</strong>: BPE od zera (uzupełnia Karpathy Ep 8)</li>
+<li><input data-id="item-64" type="checkbox"/><strong>Pre-training</strong>: scaling laws, data pipeline, causal LM</li>
+<li><input data-id="item-65" type="checkbox"/><strong>RLHF</strong>: SFT → reward model → PPO; DPO jako alternatywa</li>
+<li><input data-id="item-66" type="checkbox"/><strong>Fine-tuning</strong>: LoRA, QLoRA (4-bit — działa na 1080!), Unsloth</li>
+<li><input data-id="item-67" type="checkbox"/><strong>RAG</strong>: chunking strategie, dense retrieval, reranking, vector DB</li>
+<li><input data-id="item-68" type="checkbox"/><strong>Agenty</strong>: ReAct, MCP protocol, LangGraph, smolagents</li>
+<li><input data-id="item-69" type="checkbox"/><strong>Quantization</strong>: GPTQ, AWQ, GGUF — deployment na consumer GPU</li>
+<li><input data-id="item-70" type="checkbox"/><a href="https://github.com/mlabonne/llm-course" target="_blank">github.com/mlabonne/llm-course ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-kurs">kurs</span></div>
+</div>
+<div class="section type-kurs">
+<div class="section-label">📚 Kurs · hands-on</div>
+<div class="section-title">HuggingFace NLP Course</div>
+<ul class="item-list">
+<li><input data-id="item-71" type="checkbox"/><strong>Ch 1</strong>: Pipeline API — klasyfikacja, NER, QA, generacja</li>
+<li><input data-id="item-72" type="checkbox"/><strong>Ch 2</strong>: Tokenizer deep dive — BPE, WordPiece, padding, truncation</li>
+<li><input data-id="item-73" type="checkbox"/><strong>Ch 3</strong>: Fine-tuning z Trainer API (klasyczny workflow)</li>
+<li><input data-id="item-74" type="checkbox"/><strong>Ch 4</strong>: Custom training loop w PyTorch — pełna kontrola</li>
+<li><input data-id="item-75" type="checkbox"/><strong>Ch 5</strong>: Datasets library — streaming, mapa, filtrowanie</li>
+<li><input data-id="item-76" type="checkbox"/><strong>Ch 6</strong>: Tokenizer trening własny</li>
+<li><input data-id="item-77" type="checkbox"/><strong>Ch 7</strong>: Token classification, QA, summarization, translation</li>
+<li><input data-id="item-78" type="checkbox"/><a href="https://huggingface.co/learn/nlp-course" target="_blank">huggingface.co/learn/nlp-course ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-kurs">kurs</span></div>
+</div>
+<div class="section type-paper">
+<div class="section-label">📄 Papiery z listy</div>
+<div class="section-title">LLM i Seq2Seq — drugie czytanie z pełnym kontekstem</div>
+<ul class="item-list">
+<li><input data-id="item-79" type="checkbox"/><strong>Attention Is All You Need</strong> — Vaswani (drugie, głębokie czytanie — rozumiesz teraz każdy wzór)</li>
+<li><input data-id="item-80" type="checkbox"/><strong>Neural Machine Translation by Jointly Learning to Align and Translate</strong> — Bahdanau 2015</li>
+<li><input data-id="item-81" type="checkbox"/><strong>Order Matters: Sequence to Sequence for Sets</strong> — Vinyals 2015</li>
+<li><input data-id="item-82" type="checkbox"/><strong>Neural Turing Machines</strong> — Graves et al. 2014</li>
+<li><input data-id="item-83" type="checkbox"/><strong>Scaling Laws for Neural LMs</strong> — Kaplan et al. 2020 (Chinchilla setup)</li>
+<li><input data-id="item-84" type="checkbox"/><strong>Deep Speech 2</strong> — End-to-End Speech Recognition (Baidu)</li>
+</ul>
+<div class="tags"><span class="tag tag-paper">paper</span></div>
+</div>
+<div class="section type-build">
+<div class="section-label">🔨 Budujesz</div>
+<div class="section-title">RAG Inspector — finalizacja jako projekt portfolio</div>
+<ul class="item-list">
+<li><input data-id="item-85" type="checkbox"/><strong>Embedding pipeline</strong>: chunking strategy (fixed / semantic / sentence)</li>
+<li><input data-id="item-86" type="checkbox"/><strong>Vector store</strong>: FAISS lub ChromaDB — rozumiesz HNSW index</li>
+<li><input data-id="item-87" type="checkbox"/><strong>Retrieval</strong>: dense (cosine similarity) + BM25 hybrid</li>
+<li><input data-id="item-88" type="checkbox"/><strong>Reranking</strong>: cross-encoder model jako drugi etap</li>
+<li><input data-id="item-89" type="checkbox"/><strong>Generation</strong>: prompt template, context injection, hallucination guard</li>
+<li><input data-id="item-90" type="checkbox"/><strong>Ewaluacja</strong>: RAGAS metrics (context precision/recall, faithfulness)</li>
+<li><input data-id="item-91" type="checkbox"/><strong>Deploy</strong>: FastAPI endpoint + HuggingFace Spaces lub Render</li>
+<li><input data-id="item-92" type="checkbox"/><strong>README</strong>: architektura, wyniki ewaluacji, opis decyzji projektowych</li>
+</ul>
+<div class="tags"><span class="tag tag-build">budujesz</span><span class="tag tag-portfolio">portfolio</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow 3→4 -->
+<div class="phase-arrow">
+<div class="arrow-body">
+<svg fill="none" height="20" viewbox="0 0 16 20" width="16">
+<path d="M8 2 L8 14 M4 10 L8 15 L12 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+        masz działający RAG w portfolio — teraz uczysz go żyć w produkcji
+      </div>
+</div>
+<!-- ═══════════════════════════ FAZA 4 ═══════════════════════════ -->
+<div class="phase" id="p4">
+<div class="phase-node node-4">4</div>
+<div class="phase-card p4">
+<div class="phase-header">
+<span class="phase-num">Faza 4</span>
+<span class="phase-title">MLOps + SQL + Cloud + GAN projekt</span>
+<span class="phase-duration">4–5 tygodni</span>
+</div>
+<div class="phase-desc">
+          To jest faza która odróżnia kogoś kto trenuje modele od kogoś kto może pracować produkcyjnie. MLflow, FastAPI, Docker, podstawy cloud — pojawiają się w każdej polskiej ofercie pracy. SQL: okna (window functions), GROUP BY, subqueries — osobny slot ćwiczeń. GAN projekt: masz już tyle wiedzy (VAE z Fazy 2, architektura z Fazy 1) żeby zrobić to solidnie.
+        </div>
+<div class="sections">
+<div class="section type-kurs">
+<div class="section-label">⚙️ MLOps stack</div>
+<div class="section-title">Production ML pipeline</div>
+<ul class="item-list">
+<li><input data-id="item-93" type="checkbox"/><strong>MLflow</strong>: experiment tracking, model registry, artifact logging</li>
+<li><input data-id="item-94" type="checkbox"/><strong>FastAPI</strong>: ML serving endpoint — predict route, health check, schema</li>
+<li><input data-id="item-95" type="checkbox"/><strong>Docker</strong>: Dockerfile dla ML projektu, konteneryzacja środowiska</li>
+<li><input data-id="item-96" type="checkbox"/><strong>GitHub Actions</strong>: CI/CD pipeline — test + build + deploy on push</li>
+<li><input data-id="item-97" type="checkbox"/><strong>Model monitoring</strong>: Evidently AI — data drift, model drift detection</li>
+<li><input data-id="item-98" type="checkbox"/><strong>Cloud</strong>: AWS SageMaker lub GCP Vertex AI (free tier — jeden deployment)</li>
+<li><input data-id="item-99" type="checkbox"/><a href="https://fullstackdeeplearning.com/" target="_blank">Full Stack Deep Learning (FSDL) — darmowe ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-kurs">kurs</span><span class="tag tag-build">budujesz</span></div>
+</div>
+<div class="section type-czytaj">
+<div class="section-label">📖 SQL + dane</div>
+<div class="section-title">SQL i data fundamentals</div>
+<ul class="item-list">
+<li><input data-id="item-100" type="checkbox"/><strong>Window functions</strong>: RANK(), ROW_NUMBER(), LAG/LEAD, partitioning</li>
+<li><input data-id="item-101" type="checkbox"/><strong>GROUP BY + HAVING</strong>: aggregacje, filtrowanie po agregacji</li>
+<li><input data-id="item-102" type="checkbox"/><strong>Subqueries + CTEs</strong>: WITH clause, correlated subqueries</li>
+<li><input data-id="item-103" type="checkbox"/>30 zadań SQL na LeetCode lub Mode SQL Tutorial (free)</li>
+<li><input data-id="item-104" type="checkbox"/><strong>Parquet vs CSV</strong>: kiedy columnar storage ma znaczenie i dlaczego</li>
+<li><input data-id="item-105" type="checkbox"/><strong>Data leakage</strong>: najczęstszy błąd w ML — jak go wykryć i unikać</li>
+<li><input data-id="item-106" type="checkbox"/><strong>Feature engineering</strong>: normalizacja, imputacja, encoding kategorii</li>
+</ul>
+<div class="tags"><span class="tag tag-czytaj">czytaj</span><span class="tag tag-kurs">kurs</span></div>
+</div>
+<div class="section type-build">
+<div class="section-label">🔨 Budujesz</div>
+<div class="section-title">GAN projekt: Fashion MNIST → latent control</div>
+<ul class="item-list">
+<li><input data-id="item-107" type="checkbox"/><strong>Vanilla GAN</strong>: generator + discriminator, loss landscape, mode collapse</li>
+<li><input data-id="item-108" type="checkbox"/><strong>DCGAN</strong>: conv architektura, BatchNorm, upsampling strategia</li>
+<li><input data-id="item-109" type="checkbox"/><strong>Conditional GAN</strong>: class conditioning przez concatenation</li>
+<li><input data-id="item-110" type="checkbox"/><strong>InfoGAN</strong>: latent space control, mutual information maximization</li>
+<li><input data-id="item-111" type="checkbox"/><strong>Ewaluacja</strong>: FID score (Frechet Inception Distance) — standardowa metryka</li>
+<li><input data-id="item-112" type="checkbox"/>Wandb albo MLflow logging — wszystkie runy widoczne w dashboard</li>
+<li><input data-id="item-113" type="checkbox"/>GitHub: wykresy FID, przykłady generacji, latent space interpolation</li>
+</ul>
+<div class="tags"><span class="tag tag-build">budujesz</span><span class="tag tag-portfolio">portfolio</span></div>
+</div>
+<div class="section type-czytaj">
+<div class="section-label">📖 Czytaj</div>
+<div class="section-title">MLOps i LLMOps — kluczowe artykuły</div>
+<ul class="item-list">
+<li><input data-id="item-114" type="checkbox"/>Compound AI systems — Matei Zaharia (Databricks blog)</li>
+<li><input data-id="item-115" type="checkbox"/>Prompt Engineering as Software Engineering — Lilian Weng</li>
+<li><input data-id="item-116" type="checkbox"/>Cost as a First-Class Concern — token caching, model routing</li>
+<li><input data-id="item-117" type="checkbox"/>LLM hallucination mitigation: RAG + CoT + guardrails — przegląd</li>
+<li><input data-id="item-118" type="checkbox"/><a href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank">LLM Powered Autonomous Agents — Lilian Weng ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-czytaj">czytaj</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow 4→5 -->
+<div class="phase-arrow">
+<div class="arrow-body">
+<svg fill="none" height="20" viewbox="0 0 16 20" width="16">
+<path d="M8 2 L8 14 M4 10 L8 15 L12 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+        masz stack produkcyjny i 3 projekty w portfolio — czas na interview i magisterka
+      </div>
+</div>
+<!-- ═══════════════════════════ FAZA 5 ═══════════════════════════ -->
+<div class="phase" id="p5">
+<div class="phase-node node-5">5</div>
+<div class="phase-card p5">
+<div class="phase-header">
+<span class="phase-num">Faza 5</span>
+<span class="phase-title">AutoML + Magisterka + Interview prep</span>
+<span class="phase-duration">równolegle z poprzednimi</span>
+</div>
+<div class="phase-desc">
+          AutoML jest naturalnym rozszerzeniem NEAT (to NAS — Neural Architecture Search). Temat magisterki T1 (GNN+RL dla TSP/VRP) wchodzi tu jako projekt badawczy. Interview prep robiasz systematycznie od tej fazy: datainterview.com, SQL ćwiczenia, system design ML. Portfolio check — każdy projekt musi mieć czytelne README po angielsku i dokumentację wyników.
+        </div>
+<div class="sections">
+<div class="section type-build">
+<div class="section-label">🔨 Budujesz</div>
+<div class="section-title">AutoML — własna implementacja + magisterka</div>
+<ul class="item-list">
+<li><input data-id="item-119" type="checkbox"/><strong>HPO</strong>: Optuna — hyperparameter optimization z TPE sampler</li>
+<li><input data-id="item-120" type="checkbox"/><strong>NAS koncepcja</strong>: DARTS, random search vs. evolutionary search</li>
+<li><input data-id="item-121" type="checkbox"/><strong>NEAT jako NAS</strong>: co łączy, co różni od gradient-based NAS</li>
+<li><input data-id="item-122" type="checkbox"/><strong>Pipeline AutoML</strong>: preprocessing → model selection → hyperparams → eval</li>
+<li><input data-id="item-123" type="checkbox"/>Porównanie wyników z TPOT lub Auto-sklearn na benchmark datasecie</li>
+<li><input data-id="item-124" type="checkbox"/><strong>Magisterka T1</strong>: GNN+RL dla kombinatoryki (TSP/VRP) — Pointer Networks baseline</li>
+<li><input data-id="item-125" type="checkbox"/>Przegląd literatury: genetic algos vs. learned heuristics na TSP</li>
+</ul>
+<div class="tags"><span class="tag tag-build">budujesz</span><span class="tag tag-portfolio">portfolio</span></div>
+</div>
+<div class="section type-paper">
+<div class="section-label">📄 Papiery z listy</div>
+<div class="section-title">Zaawansowane — bliżej magisterki</div>
+<ul class="item-list">
+<li><input data-id="item-126" type="checkbox"/><strong>Pointer Networks</strong> — Vinyals et al. 2015 (kluczowy dla TSP/VRP)</li>
+<li><input data-id="item-127" type="checkbox"/><strong>Variational Lossy Autoencoder</strong> — Chen et al.</li>
+<li><input data-id="item-128" type="checkbox"/><strong>Relational RNNs</strong> — Santoro et al. 2018</li>
+<li><input data-id="item-129" type="checkbox"/><strong>Quantifying Rise and Fall of Complexity</strong> — Coffee Automaton paper</li>
+<li><input data-id="item-130" type="checkbox"/><strong>Neural Quantum Chemistry</strong> — Schütt et al.</li>
+<li><input data-id="item-131" type="checkbox"/><strong>A Tutorial Intro to MDL Principle</strong> — Grünwald</li>
+</ul>
+<div class="tags"><span class="tag tag-paper">paper</span></div>
+</div>
+<div class="section type-czytaj">
+<div class="section-label">🎯 Interview prep</div>
+<div class="section-title">datainterview.com + systematyczna nauka</div>
+<ul class="item-list">
+<li><input data-id="item-132" type="checkbox"/><strong>ML fundamentals</strong>: bias-variance, overfitting, regularyzacja L1/L2, cross-validation</li>
+<li><input data-id="item-133" type="checkbox"/><strong>Metryki</strong>: F1 vs AUC vs Precision@k — kiedy co i dlaczego</li>
+<li><input data-id="item-134" type="checkbox"/><strong>Optymalizacja</strong>: SGD, Adam, learning rate schedules, gradient clipping</li>
+<li><input data-id="item-135" type="checkbox"/><strong>System design ML</strong>: feature store, serving, monitoring, A/B testing modeli</li>
+<li><input data-id="item-136" type="checkbox"/><strong>LLM pytania</strong>: RAG, hallucynacje, context window, fine-tuning vs. prompting</li>
+<li><input data-id="item-137" type="checkbox"/><strong>SQL</strong>: window functions, GROUP BY/HAVING, subquery — musi śmigać z głowy</li>
+<li><input data-id="item-138" type="checkbox"/><strong>Kodowanie</strong>: Python — data structures, complexity, clean code</li>
+<li><input data-id="item-139" type="checkbox"/><a href="https://datainterview.com" target="_blank">datainterview.com ↗</a></li>
+<li><input data-id="item-140" type="checkbox"/><a href="https://www.datacamp.com/blog/top-machine-learning-interview-questions" target="_blank">Top ML Interview Questions — DataCamp ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-czytaj">czytaj</span><span class="tag tag-kurs">kurs</span></div>
+</div>
+<div class="section type-portfolio">
+<div class="section-label">✅ Portfolio check</div>
+<div class="section-title">GitHub — każdy projekt musi być czytelny</div>
+<ul class="item-list">
+<li><input data-id="item-141" type="checkbox"/><strong>RAG Inspector</strong>: README po angielsku, architektura, RAGAS wyniki, demo link</li>
+<li><input data-id="item-142" type="checkbox"/><strong>NEAT implementation</strong>: opis algorytmu, benchmark na środowiskach, wizualizacje</li>
+<li><input data-id="item-143" type="checkbox"/><strong>Symulacje fizyczne</strong>: opis problemu, jak działa sieć, wyniki treningu</li>
+<li><input data-id="item-144" type="checkbox"/><strong>GAN projekt</strong>: FID scores, przykłady generacji, latent interpolation</li>
+<li><input data-id="item-145" type="checkbox"/>LinkedIn (angielski): linki do projektów, opis stack'u, open to work</li>
+<li><input data-id="item-146" type="checkbox"/>Kaggle: min. 2 submissje z write-upem (pozycja nie ma znaczenia)</li>
+</ul>
+<div class="tags"><span class="tag tag-portfolio">portfolio</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow 5→6 -->
+<div class="phase-arrow">
+<div class="arrow-body">
+<svg fill="none" height="20" viewbox="0 0 16 20" width="16">
+<path d="M8 2 L8 14 M4 10 L8 15 L12 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+        to tło — czytasz równolegle przez cały czas, bez presji kolejności
+      </div>
+</div>
+<!-- ═══════════════════════════ FAZA 6 ═══════════════════════════ -->
+<div class="phase" id="p6">
+<div class="phase-node node-6">∞</div>
+<div class="phase-card p6">
+<div class="phase-header">
+<span class="phase-num">Zawsze</span>
+<span class="phase-title">Tło teoretyczne i śledzenie pola</span>
+<span class="phase-duration">po trochu, bez presji</span>
+</div>
+<div class="always-note">
+          Nie ma tu kolejności — czytasz kiedy masz ochotę, kiedy temat koresponduje z czymś co właśnie robisz. Kolmogorov i MDL przy magisterce. Machine Super Intelligence wieczorem przy kawie. Arxiv sanity — tydzień w tydzień, 10 minut.
+        </div>
+<div class="sections">
+<div class="section type-paper">
+<div class="section-label">📄 Filozofia i teoria AI</div>
+<div class="section-title">Głębsze tło z listy papierów</div>
+<ul class="item-list">
+<li><input data-id="item-147" type="checkbox"/><strong>The First Law of Complexodynamics</strong> — Aaronson</li>
+<li><input data-id="item-148" type="checkbox"/><strong>Machine Super Intelligence</strong> — Schmidhuber (długi, ale warto)</li>
+<li><input data-id="item-149" type="checkbox"/><strong>Kolmogorov Complexity and Algorithmic Randomness</strong> — Li &amp; Vitányi</li>
+<li><input data-id="item-150" type="checkbox"/><strong>A Tutorial Introduction to the MDL Principle</strong> — Grünwald</li>
+<li><input data-id="item-151" type="checkbox"/><strong>Neural Quantum Chemistry</strong> — Schütt et al.</li>
+<li><input data-id="item-152" type="checkbox"/><strong>Quantifying Rise and Fall of Complexity</strong> — Coffee Automaton</li>
+</ul>
+<div class="tags"><span class="tag tag-paper">paper</span></div>
+</div>
+<div class="section type-czytaj">
+<div class="section-label">📡 Śledzenie na bieżąco</div>
+<div class="section-title">Źródła — tydzień w tydzień</div>
+<ul class="item-list">
+<li><input data-id="item-153" type="checkbox"/><a href="https://paperswithcode.com/" target="_blank">Papers With Code — SOTA tracker ↗</a></li>
+<li><input data-id="item-154" type="checkbox"/><a href="https://lilianweng.github.io/" target="_blank">Lilian Weng blog — najlepsza seria w sieci ↗</a></li>
+<li><input data-id="item-155" type="checkbox"/><a href="https://jalammar.github.io/" target="_blank">Jay Alammar blog — wizualne wyjaśnienia ↗</a></li>
+<li><input data-id="item-156" type="checkbox"/>Andrej Karpathy na X / GitHub — nowe projekty</li>
+<li><input data-id="item-157" type="checkbox"/><a href="https://huggingface.co/blog" target="_blank">HuggingFace Blog — nowe modele i techniki ↗</a></li>
+<li><input data-id="item-158" type="checkbox"/><a href="https://arxiv-sanity-lite.com/" target="_blank">Arxiv Sanity Lite — filtrowanie papierów ↗</a></li>
+</ul>
+<div class="tags"><span class="tag tag-czytaj">czytaj</span></div>
+</div>
+</div>
+</div>
+</div>
+</div><!-- /timeline -->
+</div><!-- /content -->
+<script>
+document.querySelectorAll('.item-list input[type=checkbox]').forEach(cb=>{const k=cb.dataset.id;cb.checked=localStorage.getItem(k)==='true';cb.addEventListener('change',()=>localStorage.setItem(k,cb.checked));});
+</script></body>
+</html>

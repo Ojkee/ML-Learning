@@ -1,0 +1,7 @@
+*.pdf
+
+.venv/*
+.venv312/*
+
+*.pyc
+__pycache__/*
