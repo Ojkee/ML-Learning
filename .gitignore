@@ -5,3 +5,6 @@
 
 *.pyc
 __pycache__/*
+
+Fastai/1-Intro-Metalearning/bird_or_not/bird/*
+Fastai/1-Intro-Metalearning/bird_or_not/forest/*

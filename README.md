@@ -1,5 +1,9 @@
 # ML-Learning
 
-### fastai
+### Courses
+- [ ] fastai
+    - [x] Part I
 
-### NeuralNetworks: Zero to Hero
+- [x] NeuralNetworks: Zero to Hero
+
+### Papers:
