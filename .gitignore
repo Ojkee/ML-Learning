@@ -8,3 +8,5 @@ __pycache__/*
 Fastai/*.pdf
 Fastai/1-Intro-Metalearning/bird_or_not/bird/*
 Fastai/1-Intro-Metalearning/bird_or_not/forest/*
+
+PapersAndBlogs/Papers/1. Attention Is All You Need/opus100/*
