@@ -6,7 +6,7 @@ class PixarModel(nn.Module):
     def __init__(
         self,
         *,
-        d_vacab: int,
+        d_vocab: int,
         d_embedding: int,
         d_model: int,
         n_layers: int,
@@ -14,14 +14,14 @@ class PixarModel(nn.Module):
         super().__init__()
         self.d_hidden = d_model
 
-        self.embeddings = nn.Embedding(d_vacab, d_embedding)
+        self.embeddings = nn.Embedding(d_vocab, d_embedding)
         self.lstms = nn.ModuleList(
             [
                 VanillaLSTM(d_embedding if i == 0 else d_model, d_model)
                 for i in range(n_layers)
             ]
         )
-        self.projection = nn.Linear(d_model, d_vacab)
+        self.projection = nn.Linear(d_model, d_vocab)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         B, T = x.shape
