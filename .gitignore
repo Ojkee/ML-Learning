@@ -10,3 +10,5 @@ Fastai/1-Intro-Metalearning/bird_or_not/bird/*
 Fastai/1-Intro-Metalearning/bird_or_not/forest/*
 
 PapersAndBlogs/Papers/1. Attention Is All You Need/opus100/*
+PapersAndBlogs/Blogs/3. Understanding LSTM Networks/data/*.pdf
+PapersAndBlogs/Blogs/3. Understanding LSTM Networks/data/pixar.txt

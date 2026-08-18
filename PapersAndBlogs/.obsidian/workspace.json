@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Blogs/1. The Annotated Transformer/Kullback–Leibler divergence.md",
+                "file": "Blogs/3. Understanding LSTM Networks/Understanding LSTM Networks.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Kullback–Leibler divergence"
+              "title": "Understanding LSTM Networks"
             }
           }
         ]
@@ -83,7 +83,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 226.63671875
+    "width": 245.25,
+    "collapsed": true
   },
   "right": {
     "id": "225591f305f275ba",
@@ -193,20 +194,31 @@
   },
   "active": "df5eeeed1542d5af",
   "lastOpenFiles": [
+    "Blogs/3. Understanding LSTM Networks/__pycache__/model.cpython-312.pyc",
+    "Blogs/3. Understanding LSTM Networks/__pycache__/dataloader.cpython-312.pyc",
+    "Blogs/3. Understanding LSTM Networks/dataloader.py",
+    "Blogs/3. Understanding LSTM Networks/playgound.ipynb",
+    "Blogs/3. Understanding LSTM Networks/data/README.md",
+    "Blogs/3. Understanding LSTM Networks/1024.vocab",
+    "Blogs/3. Understanding LSTM Networks/1024.model",
+    "Blogs/3. Understanding LSTM Networks/512.vocab",
+    "Blogs/3. Understanding LSTM Networks/512.model",
+    "Blogs/3. Understanding LSTM Networks/__pycache__/tokenizer.cpython-312.pyc",
+    "Blogs/3. Understanding LSTM Networks/__pycache__",
+    "Blogs/3. Understanding LSTM Networks/tokenizer.py",
+    "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816211049.png",
+    "Blogs/3. Understanding LSTM Networks/Understanding LSTM Networks.md",
+    "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816210926.png",
+    "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816210834.png",
+    "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816205525.png",
+    "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816204511.png",
+    "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816204555.png",
+    "Blogs/2. The Unreasonable Effectiveness of Recurrent Neural Networks/imgs/Pasted image 20260815142006.png",
+    "Blogs/2. The Unreasonable Effectiveness of Recurrent Neural Networks/The Unreasonable Effectiveness of Recurrent Neural Networks.md",
     "Blogs/1. The Annotated Transformer/The Annotated Transformer.md",
     "Blogs/1. The Annotated Transformer/Kullback–Leibler divergence.md",
     "Blogs/1. The Annotated Transformer/Beam Search.md",
     "Papers/1. Attention Is All You Need/Attention Is All You Need.md",
-    "Papers/1. Attention Is All You Need/model.py~",
-    "Papers/1. Attention Is All You Need/dataloader.py~",
-    "Papers/1. Attention Is All You Need/train.py~",
-    "Papers/1. Attention Is All You Need/config.py~",
-    "Papers/1. Attention Is All You Need/tokenizer.py~",
-    "Papers/1. Attention Is All You Need/Attention Is All You Need.pdf",
-    "Papers/1. Attention Is All You Need/__pycache__/train.cpython-312.pyc",
-    "Papers/1. Attention Is All You Need/__pycache__/dataloader.cpython-312.pyc.140640997400912",
-    "Papers/1. Attention Is All You Need/__pycache__/dataloader.cpython-312.pyc",
-    "Papers/1. Attention Is All You Need/dataloader.py",
     "README.md",
     "Papers/1. Attention Is All You Need/imgs/Pasted image 20260806191741.png",
     "Papers/1. Attention Is All You Need/imgs/Pasted image 20260805204142.png",
@@ -220,7 +232,6 @@
     "Done Papers/Deep Residual learning for Image Recognition.md",
     "Done Papers/ImageNet Classification with Deep Convolutional Neural Networks.md",
     "Done Papers/GPipe Easy Scaling with Micro-Batch Pipeline Parallelism.md",
-    "00_Reading-List.png",
     "The Annotated Transformer/The Annotated Transformer.md",
     "The First Law of Complexodynamics/The First Law of Complexodynamics.md"
   ]
