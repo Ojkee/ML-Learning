@@ -4,45 +4,45 @@
     "type": "split",
     "children": [
       {
-        "id": "6a35adcc080c95f2",
+        "id": "393262e164c1e2d5",
         "type": "tabs",
-        "dimension": 47.084233261339094,
+        "dimension": 40.98272138228942,
         "children": [
           {
-            "id": "16a7923f046d76b9",
+            "id": "7e702dc8badba43c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Papers/2. Recurrent Neural Network Regularization/Recurrent Neural Network Regularization.md",
+                "file": "Papers/4. Keeping Neural Networks Simple by Minimizing the Description Length of the Weights/Keeping Neural Networks Simple by Minimizing the Description Length of the Weights.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Recurrent Neural Network Regularization"
+              "title": "Keeping Neural Networks Simple by Minimizing the Description Length of the Weights"
             }
           }
         ]
       },
       {
-        "id": "601425a5d85e9280",
+        "id": "9dc6d30675c81bde",
         "type": "tabs",
-        "dimension": 52.915766738660906,
+        "dimension": 59.01727861771058,
         "children": [
           {
-            "id": "2c83df84227731a4",
+            "id": "0a7863235c97602e",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "Papers/2. Recurrent Neural Network Regularization/Recurrent-Neaural-Network-Regularization.pdf",
-                "page": 5,
-                "left": -13,
-                "top": 584,
-                "zoom": 1.1372549019607845
+                "file": "Papers/4. Keeping Neural Networks Simple by Minimizing the Description Length of the Weights/Keeping-Neural-Networks-Simple-by-Minimizing-the-Description-Length-of-the-Weights.pdf",
+                "page": 1,
+                "left": -12,
+                "top": 796,
+                "zoom": 1.2757352941176472
               },
               "icon": "lucide-file-text",
-              "title": "Recurrent-Neaural-Network-Regularization"
+              "title": "Keeping-Neural-Networks-Simple-by-Minimizing-the-Description-Length-of-the-Weights"
             }
           }
         ]
@@ -107,7 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 245.25,
+    "width": 373.09765625,
     "collapsed": true
   },
   "right": {
@@ -124,7 +124,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Mixing-ADAM-and-SGD-a-Combined-Optimization-Method.pdf",
+                "file": "Blogs/3. Understanding LSTM Networks/Understanding LSTM Networks.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -216,34 +216,37 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "2c83df84227731a4",
+  "active": "7e702dc8badba43c",
   "lastOpenFiles": [
+    "Papers/4. Keeping Neural Networks Simple by Minimizing the Description Length of the Weights/Keeping-Neural-Networks-Simple-by-Minimizing-the-Description-Length-of-the-Weights.pdf",
+    "Papers/3. ImageNet Classification with Deep Convolutional Neural Network/ImageNet-Classification-with-Deep-Convolutional-Networks.pdf",
+    "Papers/4. Keeping Neural Networks Simple by Minimizing the Description Length of the Weights/Keeping Neural Networks Simple by Minimizing the Description Length of the Weights.md",
+    "README.md",
+    "Papers/4. Keeping Neural Networks Simple by Minimizing the Description Length of the Weights",
+    "Papers/3. ImageNet Classification with Deep Convolutional Neural Network/ImageNet. Classification with Deep Convolutional Networks.md",
+    "Papers/3. ImageNet Classification with Deep Convolutional Neural Network/imgs",
+    "Papers/3. ImageNet Classification with Deep Convolutional Neural Network/imgs/Pasted image 20260827190721.png",
     "Papers/2. Recurrent Neural Network Regularization/Recurrent Neural Network Regularization.md",
+    "Papers/3. ImageNet Classification with Deep Convolutional Neural Network",
+    "Papers/1. Attention Is All You Need/Attention Is All You Need.md",
     "Papers/2. Recurrent Neural Network Regularization/Recurrent-Neaural-Network-Regularization.pdf",
+    "Blogs/3. Understanding LSTM Networks/Understanding LSTM Networks.md",
+    "Papers/2. Recurrent Neural Network Regularization/model_lstm_drouput.py",
+    "00_Reading-List.png",
+    "Blogs/2. The Unreasonable Effectiveness of Recurrent Neural Networks/The Unreasonable Effectiveness of Recurrent Neural Networks.md",
     "Papers/2. Recurrent Neural Network Regularization/imgs/Pasted image 20260819132120.png",
     "Papers/2. Recurrent Neural Network Regularization/imgs/Pasted image 20260819121630.png",
     "Papers/2. Recurrent Neural Network Regularization/imgs/Pasted image 20260819120007.png",
     "Papers/2. Recurrent Neural Network Regularization/imgs/Pasted image 20260819120303.png",
     "Papers/2. Recurrent Neural Network Regularization/imgs/Pasted image 20260819120327.png",
     "Papers/2. Recurrent Neural Network Regularization/imgs",
-    "Papers/1. Attention Is All You Need/Attention Is All You Need.md",
-    "README.md",
     "Papers/2. Recurrent Neural Network Regularization",
-    "Blogs/3. Understanding LSTM Networks/Understanding LSTM Networks.md",
     "Blogs/3. Understanding LSTM Networks/__pycache__/model.cpython-312.pyc",
     "Blogs/3. Understanding LSTM Networks/__pycache__/dataloader.cpython-312.pyc",
-    "Blogs/3. Understanding LSTM Networks/dataloader.py",
-    "Blogs/3. Understanding LSTM Networks/playgound.ipynb",
     "Blogs/3. Understanding LSTM Networks/data/README.md",
-    "Blogs/3. Understanding LSTM Networks/1024.vocab",
-    "Blogs/3. Understanding LSTM Networks/1024.model",
-    "Blogs/3. Understanding LSTM Networks/512.vocab",
     "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816211049.png",
     "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816210926.png",
     "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816210834.png",
-    "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816205525.png",
-    "Blogs/3. Understanding LSTM Networks/imgs/Pasted image 20260816204511.png",
-    "Blogs/2. The Unreasonable Effectiveness of Recurrent Neural Networks/The Unreasonable Effectiveness of Recurrent Neural Networks.md",
     "Blogs/1. The Annotated Transformer/The Annotated Transformer.md",
     "Blogs/1. The Annotated Transformer/Kullback–Leibler divergence.md",
     "Blogs/1. The Annotated Transformer/Beam Search.md",
